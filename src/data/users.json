@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "tipo": "demandante",
+    "nif": "12345678A",
+    "nombre": "Juan",
+    "apellido1": "Pérez",
+    "genero": "Hombre",
+    "fechaNacimiento": "1990-01-01",
+    "direccion": {
+      "calle": "Calle Falsa",
+      "numero": "123",
+      "codigoPostal": "28080",
+      "ciudad": "Madrid"
+    },
+    "estudios": [
+      {
+        "institucion": "Universidad X",
+        "titulacion": "Grado en Derecho",
+        "fecha": "2015-06-01"
+      }
+    ]
+  }
+] 
