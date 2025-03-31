@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../core/service/user.service';
 import { Usuario } from '../../../core/models/user.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +16,8 @@ export class UserFormComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +37,15 @@ export class UserFormComponent {
         ciudad: ['']
       })
     });
+
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+  if (id) {
+    this.userService.getUserById(id).subscribe(usuario => {
+      if (usuario) {
+        this.userForm.patchValue(usuario);
+      }
+    });
+  }
   }
 
   onSubmit() {
@@ -43,13 +53,22 @@ export class UserFormComponent {
       this.userForm.markAllAsTouched(); 
       return;
     };
-    const nuevoUsuario: Usuario = {
-      id: Date.now().toString(),
-      ...this.userForm.value
-    };
-    this.userService.addUser(nuevoUsuario).subscribe(() => {
+
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+  const usuario: Usuario = {
+    id: id ?? Date.now().toString(),
+    ...this.userForm.value
+  };
+
+  if (id) {
+    this.userService.updateUser(usuario).subscribe(() => {
       this.router.navigate(['/usuarios']);
     });
+  } else {
+    this.userService.addUser(usuario).subscribe(() => {
+      this.router.navigate(['/usuarios']);
+    });
+  }
   }
 
   onCancel() {
