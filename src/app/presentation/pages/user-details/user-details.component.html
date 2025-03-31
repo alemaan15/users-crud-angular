@@ -1,0 +1,51 @@
+@if(usuario){
+  <div class="detail-container">
+    <h2>{{ usuario.nombre }} {{ usuario.apellido1 }}</h2>
+  
+    <div class="tabs">
+      <div class="tab">
+        <h3>Datos Personales</h3>
+        <p><strong>NIF:</strong> {{ usuario.nif }}</p>
+        <p><strong>Género:</strong> {{ usuario.genero }}</p>
+        <p><strong>Fecha de nacimiento:</strong> {{ usuario.fechaNacimiento }}</p>
+      </div>
+  
+      <div class="tab">
+        <h3>Dirección</h3>
+        <p><strong>Calle:</strong> {{ usuario.direccion?.calle }}</p>
+        <p><strong>Número:</strong> {{ usuario.direccion?.numero }}</p>
+        <p><strong>Puerta:</strong> {{ usuario.direccion?.puerta }}</p>
+        <p><strong>Código postal:</strong> {{ usuario.direccion?.codigoPostal }}</p>
+        <p><strong>Ciudad:</strong> {{ usuario.direccion?.ciudad }}</p>
+      </div>
+      @if(usuario.tipo === tiposUsuario.DEMANDANTE){
+        <div class="tab">
+        <h3>Estudios</h3>
+        <ul>
+          @for(estudio of usuario.estudios; track estudio){
+            <li>
+            {{ estudio.institucion }} - {{ estudio.titulacion }} ({{ estudio.fecha }})
+          </li>
+          }
+          
+        </ul>
+      </div>
+      }
+      
+  
+      @if (usuario.tipo === tiposUsuario.EMPLEADO) {
+        <div class="tab">
+          <h3>Experiencia laboral</h3>
+          <ul>
+            @for (exp of usuario.experiencia; track exp) {
+              <li>
+                {{ exp.empresa }} - {{ exp.puesto }} ({{ exp.fecha }})
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+  
+}

@@ -1,0 +1,28 @@
+<div class="user-list-container">
+  <div class="toolbar">
+    <button class="new-user-button" (click)="navigateToNewUser()">Nuevo Usuario</button>
+    <select class="user-filter" [(ngModel)]="tipoSeleccionado" (change)="filterUsersByType()">
+      <option value="Todos">Todos</option>
+      <option value="Demandante">Demandante</option>
+      <option value="Empleado">Empleado</option>
+    </select>
+  </div>
+
+  @if (usuarios.length === 0) {
+    <p class="no-users-msg">No hay usuarios disponibles</p>
+  }
+  @else {
+    <ul class="user-list">
+      @for (usuario of usuarios; track usuario.id) {
+        <li class="user-item">
+          <span class="user-name">{{ usuario.nombre }} {{ usuario.apellido1 }}</span>
+          <div class="actions">
+            <button (click)="verUsuario(usuario.id)">Ver</button>
+            <button (click)="editarUsuario(usuario.id)">Editar</button>
+            <button>Borrar</button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</div>

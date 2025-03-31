@@ -1,0 +1,66 @@
+.user-list-container {
+  width: 90%;
+  max-width: 60em;
+  margin: 2em auto;
+  font-size: 1em;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5em;
+
+  .new-user-button {
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .user-filter {
+    padding: 0.4em 0.8em;
+    font-size: 1em;
+  }
+}
+
+.no-users-msg {
+  font-size: 1.1em;
+  color: #555;
+  text-align: center;
+  margin-top: 3em;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    background-color: #f9f9f9;
+
+    .user-name {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5em;
+
+      button {
+        font-size: 1em;
+        padding: 0.4em 0.8em;
+        cursor: pointer;
+      }
+    }
+  }
+}

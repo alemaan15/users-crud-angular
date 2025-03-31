@@ -1,0 +1,63 @@
+<div class="form-container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label>Tipo de usuario *</label>
+    <select formControlName="tipo">
+      <option value="">Seleccione</option>
+      <option value="demandante">Demandante</option>
+      <option value="empleado">Empleado</option>
+    </select>
+    @if(userForm.get('tipo')?.invalid && userForm.get('tipo')?.touched) {
+      <div class="error">El tipo de usuario es obligatorio.</div>
+    }
+    
+    <label>NIF o Pasaporte *</label>
+    <input type="text" formControlName="nif" />
+    @if(userForm.get('nif')?.invalid && userForm.get('nif')?.touched) {
+      <div class="error">El NIF es obligatorio.</div>
+    }
+    
+
+    <label>Nombre *</label>
+    <input type="text" formControlName="nombre" />
+    @if(userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched) {
+      <div class="error">El nombre es obligatorio.</div>
+    }
+  
+    <label>1er Apellido *</label>
+    <input type="text" formControlName="apellido1" />
+    @if(userForm.get('apellido1')?.invalid && userForm.get('apellido1')?.touched) {
+      <div class="error">El primer apellido es obligatorio.</div>
+    }
+    
+
+    <label>2º Apellido</label>
+    <input type="text" formControlName="apellido2" />
+
+    <label>Género</label>
+    <input type="text" formControlName="genero" />
+
+    <label>Fecha de nacimiento</label>
+    <input type="date" formControlName="fechaNacimiento" />
+
+    <fieldset formGroupName="direccion">
+      <legend>Dirección</legend>
+      <label>Calle</label>
+      <input type="text" formControlName="calle" />
+
+      <label>Número</label>
+      <input type="text" formControlName="numero" />
+
+      <label>Puerta</label>
+      <input type="text" formControlName="puerta" />
+
+      <label>Código Postal</label>
+      <input type="text" formControlName="codigoPostal" />
+
+      <label>Ciudad</label>
+      <input type="text" formControlName="ciudad" />
+    </fieldset>
+
+    <button type="submit">Guardar</button>
+    <button type="button" (click)="onCancel()">Cancelar</button>
+  </form>
+</div>
