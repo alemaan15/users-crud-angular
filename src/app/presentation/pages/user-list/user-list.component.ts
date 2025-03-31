@@ -20,24 +20,18 @@ export class UserListComponent implements OnInit{
   private readonly router = inject(Router);
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((data: Usuario[]) => {
-      this.usuarios = data;
-    });
+    this.cargarUsuarios()
   }
 
-  navigateToNewUser() {
+  navegarANuevoUsuario() {
     this.router.navigate(['/usuarios/nuevo']);
   }
 
-  navigateToEditUser(id: string) {
+  navegarAEditarUsuario(id: string) {
     this.router.navigate(['/usuarios/editar', id]);
   }
 
-  navigateToUserDetails(id: string) {
-    this.router.navigate(['/usuarios/detalle', id]);
-  }
-
-  filterUsersByType() {
+  filtrarUsuariosPorTipo() {
     this.userService.getUserByType(this.tipoSeleccionado).subscribe((data: Usuario[]) => {
       this.usuarios = data;
     });
@@ -49,5 +43,20 @@ export class UserListComponent implements OnInit{
 
   editarUsuario(id: string) {
     this.router.navigate(['/usuarios/editar', id]);
+  }
+
+  eliminarUsuario(id: string) {
+    const confirmed = confirm(`¿Está seguro de que desea borrar el usuario con id: ${id}?`);
+    if (confirmed) {
+      this.userService.deleteUser(id).subscribe(() => {
+        this.cargarUsuarios();
+      });
+    }
+  }
+
+  private cargarUsuarios() {
+    this.userService.getUsers().subscribe((data: Usuario[]) => {
+      this.usuarios = data;
+    });
   }
 }

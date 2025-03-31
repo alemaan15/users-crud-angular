@@ -41,4 +41,13 @@ export class UserService {
     }
     return of(undefined);
   }
+
+  deleteUser(id: string): Observable<Usuario | undefined> {
+    const index = this.users.findIndex(user => user.id === id);
+    if (index !== -1) {
+      const deletedUser = this.users.splice(index, 1)[0];
+      return of(deletedUser);
+    }
+    return of(undefined);
+  }
 }
