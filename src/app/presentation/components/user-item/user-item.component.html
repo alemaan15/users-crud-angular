@@ -1,0 +1,9 @@
+
+<li class="user-item">
+  <span class="user-name">{{ usuario.nombre }} {{ usuario.apellido1 }}</span>
+  <div class="actions">
+    <button (click)="verUsuario.emit(usuario.id)">Ver</button>
+    <button (click)="editarUsuario.emit(usuario.id)">Editar</button>
+    <button (click)="eliminarUsuario.emit(usuario.id)">Borrar</button>
+  </div>
+</li>

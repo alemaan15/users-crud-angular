@@ -3,11 +3,12 @@ import { Usuario } from '../../../core/models/user.model';
 import { UserService } from '../../../core/service/user.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { UserItemComponent } from '../../components/user-item/user-item.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, UserItemComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

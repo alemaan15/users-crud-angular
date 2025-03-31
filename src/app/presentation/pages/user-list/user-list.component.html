@@ -14,14 +14,12 @@
   @else {
     <ul class="user-list">
       @for (usuario of usuarios; track usuario.id) {
-        <li class="user-item">
-          <span class="user-name">{{ usuario.nombre }} {{ usuario.apellido1 }}</span>
-          <div class="actions">
-            <button (click)="verUsuario(usuario.id)">Ver</button>
-            <button (click)="editarUsuario(usuario.id)">Editar</button>
-            <button (click)="eliminarUsuario(usuario.id)">Borrar</button>
-          </div>
-        </li>
+        <app-user-item
+          [usuario]="usuario"
+          (verUsuario)="verUsuario(usuario.id)"
+          (editarUsuario)="navegarAEditarUsuario(usuario.id)"
+          (eliminarUsuario)="eliminarUsuario(usuario.id)"
+        ></app-user-item>
       }
     </ul>
   }
